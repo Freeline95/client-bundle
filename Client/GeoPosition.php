@@ -13,7 +13,7 @@ use GuzzleHttp\Client;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 /**
- * Service for working with geo positions from MegaData
+ * API for working with geo positions from MegaData
  */
 class GeoPosition
 {
@@ -49,13 +49,13 @@ class GeoPosition
      * GeoPosition constructor.
      *
      * @param LoggerInterface         $logger
-     * @param ContentParserInterface $responseParser
+     * @param ContentParserInterface  $responseParser
      * @param ValidatorInterface      $validator
      * @param string                  $megaDataUrl
      */
     public function __construct(
         LoggerInterface         $logger,
-        ContentParserInterface $responseParser,
+        ContentParserInterface  $responseParser,
         ValidatorInterface      $validator,
         string                  $megaDataUrl
     )
