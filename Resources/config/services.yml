@@ -1,0 +1,14 @@
+parameters:
+    mega_data.url:
+
+services:
+    mega_data_client_bundle.json_content_parser:
+        class: MegaDataClientBundle\Service\JsonContentParser
+
+    mega_data_client_bundle.geo_position:
+        class: MegaDataClientBundle\Client\GeoPosition
+        arguments:
+          - '@logger'
+          - '@mega_data_client_bundle.json_content_parser'
+          - '@validator'
+          - '%mega_data.url%'
