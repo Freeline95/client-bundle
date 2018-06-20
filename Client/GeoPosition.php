@@ -79,7 +79,7 @@ class GeoPosition
             $response = $client->get('/locations');
         } catch (TransferException $e) {
             $this->logger->critical($e->getMessage(), $client);
-            throw new BadRequestHttpException('Bad request');
+            throw new TransferException('Error while connect to mega data');
         }
 
         $content     = $response->getBody()->getContents();
@@ -88,7 +88,7 @@ class GeoPosition
         if (isset($decodedBody['success']) && isset($decodedBody['data']) && $decodedBody['success'] === true) {
             // Подобные операции делаются сериализатором, но в данном случае это оверкил.
             $locationsDto = new LocationsDto();
-            $locationsDto->locations = $decodedBody['data']['locations'];
+            $locationsDto->locations = $decodedBody['data']['locations'] ?? [];
 
             $this->validator->validate($locationsDto);
             return $locationsDto;
